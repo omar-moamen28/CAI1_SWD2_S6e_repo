@@ -1,0 +1,10 @@
+.UserInfo {
+   margin-right: auto;
+   width: fit-content;
+   transform: translateY(-30px);
+}
+
+.UserInfo-name {
+   font-weight: bold;
+   color: #444;
+}

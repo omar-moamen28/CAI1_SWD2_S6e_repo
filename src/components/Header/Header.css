@@ -1,0 +1,38 @@
+header {
+   display: flex;
+   align-items: center;
+   color: white;
+   background-color: #3f3f3f;
+   height: 50px;
+   padding: 0 25px;
+}
+
+header .navLinks {
+   display: flex;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   height: 100%;
+}
+
+header .navLinks .navLink {
+   padding: 0 25px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   transition: 0.3s;
+   -webkit-transition: 0.3s;
+   -moz-transition: 0.3s;
+   -ms-transition: 0.3s;
+   -o-transition: 0.3s;
+}
+
+header ul .navLink:hover {
+   background-color: #474747;
+   color: #00daf6;
+}
+
+header ul .navLink.active {
+   background-color: #474747;
+   color: #00daf6;
+}
