@@ -3,46 +3,9 @@ import Header from './components/Header/Header';
 import './App.css';
 import {useState} from 'react';
 import CardsList from './components/CardsList/CardsList';
+import Button from './components/Button/Button';
 
 
-const data = [
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Sara",
-    age: 20,
-    gender: "female",
-  },
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Omar",
-    age: 20,
-    gender: "male",
-  },
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Ali",
-    age: 20,
-    gender: "male",
-  },
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Salma",
-    age: 20,
-    gender: "female",
-  },
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Ahmed",
-    age: 20,
-    gender: "male",
-  },
-  {
-    id: Math.floor((Math.random() * 800)),
-    name: "Farah",
-    age: 20,
-    gender: "female",
-  },
-]
 
 // {
 //   id: Math.floor((Math.random() * 800)),
@@ -53,7 +16,61 @@ const data = [
 
 const App = () =>
 {
+  const data = [
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Sara",
+      age: 20,
+      gender: "female",
+    },
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Omar",
+      age: 20,
+      gender: "male",
+    },
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Ali",
+      age: 20,
+      gender: "male",
+    },
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Salma",
+      age: 20,
+      gender: "female",
+    },
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Ahmed",
+      age: 20,
+      gender: "male",
+    },
+    {
+      id: Math.floor((Math.random() * 800)),
+      name: "Farah",
+      age: 20,
+      gender: "female",
+    },
+  ]
+
   const [users, setUsers] = useState(data);
+
+  const addUserHandler = (id, name, age, gender) =>
+  {
+    setUsers(prevState => (
+      [
+        ...prevState,
+        {
+          id: id,
+          name: name,
+          age: age,
+          gender: gender
+        }
+      ]
+    ))
+  }
 
   const deleteHandler = (clickedId) =>
   {
@@ -66,6 +83,14 @@ const App = () =>
   return (
     <div className='App'>
       <Header />
+
+      <Button
+        className="d-block mx-auto mt-4 bg-success"
+        onClick={() => addUserHandler(2000, "Hamada", 27, "male")}
+      >
+        Add User
+
+      </Button>
 
       <CardsList data={users} deleteFunc={deleteHandler} />
 

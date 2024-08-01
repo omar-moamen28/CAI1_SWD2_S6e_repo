@@ -12,7 +12,7 @@ const Card = ({id, name, age, gender, deleteFunc}) =>
          <div>Age: {age}</div>
          <div>Gender: {gender}</div>
          <Button
-            classN="py-0 fw-bold px-2 text-danger d-block w-auto ms-auto"
+            className="py-0 fw-bold px-2 text-danger d-block w-auto ms-auto"
             variant="#ffe5e5"
             onClick={() => deleteFunc(id)}
          >

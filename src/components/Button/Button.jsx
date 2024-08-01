@@ -2,7 +2,7 @@ import './Button.css';
 
 const Button = ({
    children,
-   classN = "",
+   className = "",
    type = "button",
    variant = "purple",
    border = "none",
@@ -22,7 +22,7 @@ const Button = ({
 
    return (
       <button
-         className={`Button ${classN}`}
+         className={`Button ${className}`}
          type={type}
          style={btnStyles}
          onClick={onClick}
