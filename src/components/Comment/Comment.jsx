@@ -25,7 +25,14 @@ const Comment = () =>
          </div>
          <div className="Comment-date">25 Jul, 2024</div>
 
-         <Button color='red' variant="#444" onClick={removeHandler}>Remove</Button>
+         <Button
+            className="fw-bold"
+            color='red'
+            variant="#ffe5e5"
+            onClick={removeHandler}
+         >
+            Remove
+         </Button>
       </div>
 
       // remove === false ?

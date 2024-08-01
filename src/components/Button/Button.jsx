@@ -1,10 +1,16 @@
 import './Button.css';
 
-const Button = ({children, fs, variant = "purple", color = "#FFF", border = "none", py = "6px", px = "12px", onClick}) =>
+const Button = ({
+   children,
+   classN = "",
+   type = "button",
+   variant = "purple",
+   border = "none",
+   py = "6px",
+   px = "12px",
+   onClick}) =>
 {
    const btnStyles = {
-      color: color,
-      fontSize: fs,
       backgroundColor: variant,
       paddingTop: py,
       paddingBottom: py,
@@ -16,8 +22,8 @@ const Button = ({children, fs, variant = "purple", color = "#FFF", border = "non
 
    return (
       <button
-         className="Button"
-         type={"button"}
+         className={`Button ${classN}`}
+         type={type}
          style={btnStyles}
          onClick={onClick}
       >

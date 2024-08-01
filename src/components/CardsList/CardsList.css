@@ -1,0 +1,5 @@
+.CardsList {
+   grid-template-columns: repeat(auto-fill, minmax(350px, auto));
+   justify-content: center;
+   gap: 15px
+}

@@ -13,7 +13,7 @@ const Counter = () =>
    //    countEl.innerHTML++;
    // };
 
-   const counterHandler = () => setCount(prev => prev += 1);
+   const counterHandler = () => setCount(prevCount => prevCount + 1);
 
    console.log('rendered');
 
