@@ -4,7 +4,7 @@ import './App.css';
 import {useState} from 'react';
 import CardsList from './components/CardsList/CardsList';
 import Button from './components/Button/Button';
-
+import Add from './components/Mk/MK';
 
 
 // {
@@ -82,7 +82,8 @@ const App = () =>
 
   return (
     <div className='App'>
-      <Header />
+      <Add />
+{/*       <Header />
 
       <Button
         className="d-block mx-auto mt-4 bg-success"
@@ -92,7 +93,7 @@ const App = () =>
 
       </Button>
 
-      <CardsList data={users} deleteFunc={deleteHandler} />
+      <CardsList data={users} deleteFunc={deleteHandler} /> */}
 
 
 
