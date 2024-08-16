@@ -1,4 +1,5 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect, useContext} from "react";
+import { userContext } from "../../App";
 const Effect = () =>{
      //Mohamed , 24 , cs
      const [user,setUser] = useState({
@@ -28,8 +29,12 @@ const Effect = () =>{
      })
 
      console.log(user)
+     
+     const contextTest = useContext(userContext)
+     console.log(contextTest)
      return (
          <div>
+         {useContext(useContext)}
                 <div style={{backgroundColor : "gray", textAlign: "center",fontSize:25,width:"400px"}}>
                <div>Name :{user.name}</div>
                <div>Age :{user.age}</div>

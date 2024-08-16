@@ -1,10 +1,12 @@
 import Comment from './components/Comment/Comment';
 import Header from './components/Header/Header';
 import './App.css';
-import {useState} from 'react';
+import React ,{createContext,useState} from 'react';
 import CardsList from './components/CardsList/CardsList';
 import Button from './components/Button/Button';
 import Add from './components/Mk/MK';
+import Api from './components/Lesson/Api';
+import Effect from './components/Lesson/Effect';
 
 
 // {
@@ -13,6 +15,9 @@ import Add from './components/Mk/MK';
 //   age: 27,
 //   gender: "male",
 // },
+
+export const userContext = createContext("helloooooooo") 
+
 
 const App = () =>
 {
@@ -79,43 +84,48 @@ const App = () =>
 
     setUsers(prevState => (prevState.filter(el => (el.id !== clickedId))))
   }
+  //try context
+
+
 
   return (
-    <div className='App'>
-      <Add />
-{/*       <Header />
+  <userContext.Provider value="hello userr">
+        <Add />
+        <Effect />
+  {/*       <Header />
 
-      <Button
-        className="d-block mx-auto mt-4 bg-success"
-        onClick={() => addUserHandler(2000, "Hamada", 27, "male")}
-      >
-        Add User
+        <Button
+          className="d-block mx-auto mt-4 bg-success"
+          onClick={() => addUserHandler(2000, "Hamada", 27, "male")}
+        >
+          Add User
 
-      </Button>
+        </Button>
 
-      <CardsList data={users} deleteFunc={deleteHandler} /> */}
-
-
+        <CardsList data={users} deleteFunc={deleteHandler} /> */}
 
 
-      {/* <Comment /> */}
-      {/* <Button
-        type="button"
-        variant="#00daf6"
-        border="none"
-        fs="20px"
-      >
-        Click me
-      </Button> */}
 
-      {/* <Button type="button" border="none">new button</Button> */}
 
-      {/* <Counter /> */}
+        {/* <Comment /> */}
+        {/* <Button
+          type="button"
+          variant="#00daf6"
+          border="none"
+          fs="20px"
+        >
+          Click me
+        </Button> */}
 
-      {/* <StateFoo />
-      <Foo /> */}
+        {/* <Button type="button" border="none">new button</Button> */}
 
-    </div>
+        {/* <Counter /> */}
+
+        {/* <StateFoo />
+        <Foo /> */}
+
+  </userContext.Provider>
+    
   )
 }
 
