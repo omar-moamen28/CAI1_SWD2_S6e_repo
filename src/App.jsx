@@ -1,7 +1,7 @@
 import Comment from './components/Comment/Comment';
 import Header from './components/Header/Header';
 import './App.css';
-import React ,{createContext,useState} from 'react';
+import React ,{createContext,useEffect,useRef,useState} from 'react';
 import CardsList from './components/CardsList/CardsList';
 import Button from './components/Button/Button';
 import Add from './components/Mk/MK';
@@ -21,49 +21,56 @@ export const userContext = createContext("helloooooooo")
 
 const App = () =>
 {
-  const data = [
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Sara",
-      age: 20,
-      gender: "female",
-    },
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Omar",
-      age: 20,
-      gender: "male",
-    },
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Ali",
-      age: 20,
-      gender: "male",
-    },
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Salma",
-      age: 20,
-      gender: "female",
-    },
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Ahmed",
-      age: 20,
-      gender: "male",
-    },
-    {
-      id: Math.floor((Math.random() * 800)),
-      name: "Farah",
-      age: 20,
-      gender: "female",
-    },
-  ]
+  const [users, setUsers] = useState();
+  
+  const newUser = {
+    name:"",
+    age:"",
+    gender:""
+  }
 
-  const [users, setUsers] = useState(data);
+  useEffect(()=>{
+    fetch("http://localhost:3004/getUsers")
+    .then((res)=> res.json())
+    .then((mydata)=> setUsers(mydata))
+    
+    
+  },[])
 
+
+
+ 
+  const deleteHandler = (clickedId) =>
+  {
+    // let newUsers = users.filter(el => (el.id !== clickedId))
+    // setUsers(newUsers);
+    fetch("http://localhost:3004/deleteUser",{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify({
+        id: clickedId,
+      })
+    })
+    .then((res)=>console.log(res))
+    setUsers(prevState => (prevState.filter(el => (el.id !== clickedId))))
+  }
   const addUserHandler = (id, name, age, gender) =>
   {
+    fetch("http://localhost:3004/addUser",{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify({
+        id: 100,
+        name: newUser.name,
+        age: newUser.age,
+        gender: newUser.gender
+      })
+    })
+    .then((res)=>console.log(res))
     setUsers(prevState => (
       [
         ...prevState,
@@ -76,38 +83,41 @@ const App = () =>
       ]
     ))
   }
-
-  const deleteHandler = (clickedId) =>
-  {
-    // let newUsers = users.filter(el => (el.id !== clickedId))
-    // setUsers(newUsers);
-
-    setUsers(prevState => (prevState.filter(el => (el.id !== clickedId))))
+ 
+  const inputHandler = (e) =>{
+    newUser[e.target.id] = e.target.value
   }
-  //try context
-
-
-
   return (
-  <userContext.Provider value="hello userr">
-        <Add />
-        <Effect />
-  {/*       <Header />
-
-        <Button
-          className="d-block mx-auto mt-4 bg-success"
-          onClick={() => addUserHandler(2000, "Hamada", 27, "male")}
-        >
-          Add User
+  <>
+    <Header />
+    <form >
+      <input type="text" placeholder='Enter your name' id="name"  onChange={inputHandler}/>
+      <input type="text" placeholder='Enter your age' id='age' onChange={inputHandler}/>
+      <input type="gender" placeholder='Enter your gender' id='gender' onChange={inputHandler}/>
+      <Button
+        className="d-block mx-auto mt-4 bg-success"
+        onClick={() => addUserHandler(2000, newUser.name, newUser.age, newUser.gender)}
+      >
+        Add User
 
         </Button>
+    </form>
+        {users && <CardsList data={users} deleteFunc={deleteHandler} />}
 
-        <CardsList data={users} deleteFunc={deleteHandler} /> */}
+  </>
+        
+
+       
+
+//  </userContext.Provider>
+    
+  )
+}
+
+export default App;
 
 
-
-
-        {/* <Comment /> */}
+ {/* <Comment /> */}
         {/* <Button
           type="button"
           variant="#00daf6"
@@ -123,10 +133,3 @@ const App = () =>
 
         {/* <StateFoo />
         <Foo /> */}
-
-  </userContext.Provider>
-    
-  )
-}
-
-export default App;

@@ -17,9 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 
-  // <App />
+  <App />
 
-  <FirstContext.Provider value={"Mohamed"}>
+/*   <FirstContext.Provider value={"Mohamed"}>
       <Clean user={name}/>
-   </FirstContext.Provider>
+   </FirstContext.Provider> */
 );
