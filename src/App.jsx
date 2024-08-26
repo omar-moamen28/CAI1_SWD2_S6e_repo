@@ -63,7 +63,7 @@ const App = () =>
       headers:{
         'Content-Type': 'application/json'
       },
-      body:  JSON.stringify({
+      body: JSON.stringify({
         id: 100,
         name: newUser.name,
         age: newUser.age,
