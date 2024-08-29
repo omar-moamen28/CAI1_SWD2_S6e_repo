@@ -7,6 +7,8 @@ import Button from './components/Button/Button';
 import Add from './components/Mk/MK';
 import Api from './components/Lesson/Api';
 import Effect from './components/Lesson/Effect';
+import AddUser from './components/AddUser/AddUser';
+import {Routes,Route} from 'react-router-dom'
 
 
 // {
@@ -23,19 +25,15 @@ const App = () =>
 {
   const [users, setUsers] = useState();
   
-  const newUser = {
-    name:"",
-    age:"",
-    gender:""
-  }
+
 
   useEffect(()=>{
     fetch("http://localhost:3004/getUsers")
     .then((res)=> res.json())
-    .then((mydata)=> setUsers(mydata))
-    
-    
-  },[])
+    .then((mydata)=> setUsers(mydata))    
+  
+  },[]) 
+
 
 
 
@@ -56,8 +54,9 @@ const App = () =>
     .then((res)=>console.log(res))
     setUsers(prevState => (prevState.filter(el => (el.id !== clickedId))))
   }
-  const addUserHandler = (id, name, age, gender) =>
+  const addUserHandler = (id,name,age,gender) =>
   {
+    console.log(name)
     fetch("http://localhost:3004/addUser",{
       method:"POST",
       headers:{
@@ -65,9 +64,9 @@ const App = () =>
       },
       body: JSON.stringify({
         id: 100,
-        name: newUser.name,
-        age: newUser.age,
-        gender: newUser.gender
+        name:name,
+        age: age,
+        gender: gender
       })
     })
     .then((res)=>console.log(res))
@@ -84,30 +83,38 @@ const App = () =>
     ))
   }
  
-  const inputHandler = (e) =>{
-    newUser[e.target.id] = e.target.value
-  }
+
   return (
   <>
     <Header />
-    <form >
-      <input type="text" placeholder='Enter your name' id="name"  onChange={inputHandler}/>
-      <input type="text" placeholder='Enter your age' id='age' onChange={inputHandler}/>
-      <input type="gender" placeholder='Enter your gender' id='gender' onChange={inputHandler}/>
-      <Button
-        className="d-block mx-auto mt-4 bg-success"
-        onClick={() => addUserHandler(2000, newUser.name, newUser.age, newUser.gender)}
-      >
-        Add User
+    <Routes>
+      <Route path='/' element={users && <CardsList data={users} deleteFunc={deleteHandler} />}/>
+      <Route path="addUser" element={<AddUser addUserHandler ={addUserHandler} />} />
+    </Routes>  
 
-        </Button>
-    </form>
-        {users && <CardsList data={users} deleteFunc={deleteHandler} />}
 
   </>
         
 
-       
+        // <Header />
+        // <form >
+        //   <input type="text" placeholder='Enter your name' id="name"  onChange={inputHandler}/>
+        //   <input type="text" placeholder='Enter your age' id='age' onChange={inputHandler}/>
+        //   <input type="gender" placeholder='Enter your gender' id='gender' onChange={inputHandler}/>
+        //   <Button
+        //     className="d-block mx-auto mt-4 bg-success"
+        //     onClick={() => addUserHandler(2000, newUser.name, newUser.age, newUser.gender)}
+        //   >
+        //     Add User
+    
+        //     </Button>
+        // </form>
+        //     {users && <CardsList data={users} deleteFunc={deleteHandler} />}
+        
+
+
+
+
 
 //  </userContext.Provider>
     

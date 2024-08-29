@@ -1,14 +1,14 @@
 import Avatar from '../Avatar/Avatar';
 import './Header.css';
-
+import {Link} from "react-router-dom"
 const Header = () =>
 {
 
    return (
       <header>
          <ul className='navLinks'>
-            <li className='navLink active'>Home</li>
-            <li className='navLink'>About</li>
+            <Link to="/" className='navLink'>Home</Link>
+            <li className='navLink'>AddUser</li>
             <li className='navLink'>Services</li>
             <li className='navLink'>Contacts</li>
          </ul>
@@ -16,5 +16,6 @@ const Header = () =>
       </header>
    )
 }
+
 
 export default Header;
